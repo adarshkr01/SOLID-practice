@@ -62,5 +62,20 @@ namespace BankApplication.Logger.Message
         {
             return "\nInvalid Choice";
         }
+
+        public string AccountMenu()
+        {
+            return "\n1. Deposit\t2. Withdraw\n3. Balance\t4. Interest\n5. Exit";
+        }
+
+        public string AskForAmount()
+        {
+            return "\nEnter amount: ";
+        }
+
+        public string TryAgain()
+        {
+            return "\nTry again? [Y/N]: ";
+        }
     }
 }

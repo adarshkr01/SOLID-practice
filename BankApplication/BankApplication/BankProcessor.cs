@@ -49,19 +49,19 @@ namespace BankApplication
 
             while(true)
             {
-                Console.WriteLine("\n1. Deposit\t2. Withdraw\n3. Balance\t4. Interest\n5. Exit");
+                Console.WriteLine(_message.AccountMenu());
 
                 try
                 {
                     switch (Convert.ToInt32(Console.ReadLine()))
                     {
                         case 1:
-                            _logger.LogMessage("\nEnter amount: ");
+                            _logger.LogMessage(_message.AskForAmount());
                             bank.Deposit(Convert.ToDouble(Console.ReadLine()));
                             break;
 
                         case 2:
-                            _logger.LogMessage("\nEnter amount: ");
+                            _logger.LogMessage(_message.AskForAmount());
                             bank.Withdraw(Convert.ToDouble(Console.ReadLine()));
                             break;
 
@@ -90,7 +90,7 @@ namespace BankApplication
                     _logger.LogError(e.Message);
                 }
 
-                _logger.LogMessage("\nTry again? [Y/N]: ");
+                _logger.LogMessage(_message.TryAgain());
                 string tryAgain = Console.ReadLine().ToUpper();
 
                 if (!tryAgain.Equals("Y"))

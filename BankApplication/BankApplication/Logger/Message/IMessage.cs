@@ -15,5 +15,8 @@ namespace BankApplication.Logger.Message
         string AccountCreationMenu();
         string ThankyouMessage();
         string InvalidChoice();
+        string AccountMenu();
+        string AskForAmount();
+        string TryAgain();
     }
 }
