@@ -42,5 +42,25 @@ namespace BankApplication.Logger.Message
         {
             return "Cannot Withdraw before the time expires in FD";
         }
+
+        public string WelcomeMessage()
+        {
+            return "Welcome to ABC Bank";
+        }
+
+        public string AccountCreationMenu()
+        {
+            return "\n--- Create an Account ---\n\n1. Fixed Deposit\t2. Savings Account\n3. Exit";
+        }
+
+        public string ThankyouMessage()
+        {
+            return "\nThank you";
+        }
+
+        public string InvalidChoice()
+        {
+            return "\nInvalid Choice";
+        }
     }
 }

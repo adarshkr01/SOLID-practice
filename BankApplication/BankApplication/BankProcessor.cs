@@ -19,9 +19,9 @@ namespace BankApplication
 
         public void Process()
         {
-            Console.WriteLine("Welcome to ABC Bank");
+            _logger.LogMessage(_message.WelcomeMessage());
 
-            Console.WriteLine("\n--- Create an Account ---\n\n1. Fixed Deposit\t2. Savings Account\n3. Exit");
+            _logger.LogMessage(_message.AccountCreationMenu());
 
             int choice = Convert.ToInt32(Console.ReadLine());
             IBank bank = null;
@@ -37,12 +37,12 @@ namespace BankApplication
                     break;
 
                 case 3:
-                    _logger.LogMessage("\nThank you");
+                    _logger.LogMessage(_message.ThankyouMessage());
                     Environment.Exit(0);
                     break;
 
                 default:
-                    _logger.LogError("\nInvalid Choice");
+                    _logger.LogError(_message.InvalidChoice());
                     Environment.Exit(0);
                     break;
             }
@@ -74,12 +74,12 @@ namespace BankApplication
                             break;
 
                         case 5:
-                            _logger.LogMessage("\nThank you");
+                            _logger.LogMessage(_message.ThankyouMessage());
                             Environment.Exit(0);
                             break;
 
                         default:
-                            _logger.LogError("\nInvalid Choice");
+                            _logger.LogError(_message.InvalidChoice());
                             Environment.Exit(0);
                             break;
                     }
@@ -87,7 +87,7 @@ namespace BankApplication
 
                 catch(Exception e)
                 {
-                    _logger.LogMessage(e.Message);
+                    _logger.LogError(e.Message);
                 }
 
                 _logger.LogMessage("\nTry again? [Y/N]: ");
@@ -95,7 +95,7 @@ namespace BankApplication
 
                 if (!tryAgain.Equals("Y"))
                 {
-                    _logger.LogMessage("\nThank you");
+                    _logger.LogMessage(_message.ThankyouMessage());
                     break;
                 }
             }
