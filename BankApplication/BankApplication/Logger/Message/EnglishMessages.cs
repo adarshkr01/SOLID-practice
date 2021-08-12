@@ -37,5 +37,10 @@ namespace BankApplication.Logger.Message
         {
             return "You have successfully withdrawn: " + amount + "\nCurrent Balance: " + balance;
         }
+
+        public string FixedDepositTimeError()
+        {
+            return "Cannot Withdraw before the time expires in FD";
+        }
     }
 }

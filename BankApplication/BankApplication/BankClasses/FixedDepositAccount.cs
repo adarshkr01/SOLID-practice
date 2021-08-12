@@ -5,22 +5,21 @@ using BankApplication.Logger.Message;
 
 namespace BankApplication.BankClasses
 {
-    public class SavingsAccount : IBank
+    public class FixedDepositAccount : IBank
     {
         private double _balance;
         private double _rate;
         private double _interest;
-        private DateTime _lastInterestCalculatedTime;
+        private DateTime _depositDate;
 
         private ILogger _logger;
         private IMessage _message;
 
-        public SavingsAccount(ILogger logger, IMessage message)
+        public FixedDepositAccount(ILogger logger, IMessage message)
         {
             _balance = 0;
-            _rate = 4.0;
+            _rate = 9.5;
             _interest = 0;
-            _lastInterestCalculatedTime = DateTime.Now;
             _logger = logger;
             _message = message;
         }
@@ -31,6 +30,7 @@ namespace BankApplication.BankClasses
                 throw new ArgumentException(_message.InvalidAmount());
 
             _balance += amount;
+            _depositDate = DateTime.Now;
             _logger.LogMessage(_message.SuccessfulDeposit());
         }
 
@@ -55,6 +55,9 @@ namespace BankApplication.BankClasses
             if (amount == 0)
                 throw new ArgumentException(_message.InvalidAmount());
 
+            if ((DateTime.Now - _depositDate).TotalMinutes < 60)
+                throw new ArgumentException(_message.FixedDepositTimeError());
+
             _balance += _interest;
             _interest = 0.0;
             _balance -= amount;
@@ -63,12 +66,11 @@ namespace BankApplication.BankClasses
 
         private void UpdateInterest()
         {
-            TimeSpan timeSpan = DateTime.Now - _lastInterestCalculatedTime;
-            if(timeSpan.TotalMinutes >= 1)
+            TimeSpan timeSpan = DateTime.Now - _depositDate;
+            if (timeSpan.TotalMinutes >= 1)
             {
                 int time = (int)timeSpan.TotalMinutes;
                 _interest += (_balance * _rate * time) / 100.0;
-                _lastInterestCalculatedTime = DateTime.Now;
             }
         }
     }

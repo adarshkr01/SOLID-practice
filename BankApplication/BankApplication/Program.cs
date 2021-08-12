@@ -1,4 +1,6 @@
 ﻿using System;
+using BankApplication.Logger;
+using BankApplication.Logger.Message;
 
 namespace BankApplication
 {
@@ -6,7 +8,11 @@ namespace BankApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ConsoleLogger consoleLogger = new ConsoleLogger();
+            EnglishMessages englishMessages = new EnglishMessages();
+
+            BankProcessor bankProcessor = new BankProcessor(consoleLogger, englishMessages);
+            bankProcessor.Process();
         }
     }
 }

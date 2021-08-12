@@ -10,5 +10,6 @@ namespace BankApplication.Logger.Message
         public string WithdrawSuccessful(double amount, double balance);
         public string LowBalance();
         public string InvalidAmount();
+        public string FixedDepositTimeError();
     }
 }
