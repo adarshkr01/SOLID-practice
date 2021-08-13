@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using ExpenseTracker.Interfaces;
 
-namespace ExpenseTracker
+namespace ExpenseTracker.Database
 {
-    public class EntryDatabase
+    public class EntryDatabase : IDatabase
     {
         private List<IEntry> _entryList = new List<IEntry>();
 
-        public void AddEntry(IEntry entry)
+        public bool AddEntry(IEntry entry)
         {
             _entryList.Add(entry);
             _entryList.Sort(
                     (a, b) => a.DateCreated < b.DateCreated ? 1 : -1);
+            return true;
         }
 
         public List<IEntry> ReturnOneType(EntryType etype)

@@ -1,4 +1,6 @@
 ﻿using System;
+using ExpenseTracker.Database;
+using ExpenseTracker.Parsers;
 
 namespace ExpenseTracker
 {
@@ -6,7 +8,11 @@ namespace ExpenseTracker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            EntryDatabase entryDatabase = new EntryDatabase();
+            Parser parser = new Parser(entryDatabase);
+
+            ExpenseProcessor expenseProcessor = new ExpenseProcessor(parser);
+            expenseProcessor.Process();
         }
     }
 }
